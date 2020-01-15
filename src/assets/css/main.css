@@ -72,10 +72,66 @@
               inset 0px -2px 5px rgba(255, 255, 255, 0),
               inset 0px 2px 5px rgba(0, 0, 0, 0);
   outline: none;
+  font-weight: bold;
+  font-size: 20px;
 }
 .ad-button:active {
   box-shadow: 0px -6px 10px rgba(255, 255, 255, 0),
               0px 4px 15px rgba(0, 0, 0, 0),
               inset 0px -2px 5px rgba(255, 255, 255,0),
               inset 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.ad-input {
+  position: relative;
+  box-sizing: border-box;
+  padding: 5px;
+  padding-left: 20px;
+  background: #f2f2f2;
+  height: 70px;
+  width: 100%;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1),
+              0px 4px 15px rgba(0, 0, 0, 0.15),
+              inset 0px -2px 5px rgba(255, 255, 255, 0),
+              inset 0px 2px 5px rgba(0, 0, 0, 0);
+  margin-bottom: 25px;
+  border-radius: 8px;
+  outline: none;
+}
+.ad-input-textarea {
+  position: relative;
+  box-sizing: border-box;
+  padding: 5px;
+  padding-left: 20px;
+  background: #f2f2f2;
+  height: 150px;
+  width: 100%;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1),
+              0px 4px 15px rgba(0, 0, 0, 0.15),
+              inset 0px -2px 5px rgba(255, 255, 255, 0),
+              inset 0px 2px 5px rgba(0, 0, 0, 0);
+  margin-bottom: 25px;
+  border-radius: 8px;
+  outline: none;
+  resize: none;
+}
+
+.popover-container {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+.popover-background {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0,0,0,0.92);
+  z-index: 101;
+}
+
+.heading-text {
+  font-weight: bold;
+  font-size: 45px;
 }

@@ -16,8 +16,8 @@ export default {
         to: "/"
       },
       {
-        name: "Create",
-        to: "/create"
+        name: "Teams",
+        to: "/teams"
       },
       {
         name: "Documentation",

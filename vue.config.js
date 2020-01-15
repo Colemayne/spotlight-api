@@ -2,14 +2,19 @@ module.exports = {
   "transpileDependencies": [
     "vuetify"
   ],
+  lintOnSave:false,
   devServer: {
     proxy: {
-      '/api/manage/v1': {
-         target: 'http://localhost:8081',
+      '/api/group/v1': {
+         target: 'http://localhost:8082',
          changeOrigin: true
        },
-       '/api/test/v1': {
-         target: 'http://localhost:8081',
+       '/api/application/v1': {
+         target: 'http://localhost:8082',
+         changeOrigin: true
+       },
+       '/api/endpoint/v1': {
+         target: 'http://localhost:8082',
          changeOrigin: true
        }
     }
