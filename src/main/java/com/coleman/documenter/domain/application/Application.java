@@ -31,6 +31,8 @@ public class Application {
     private String applicationName;
     @Column(name="application_description")
     private String applicationDescription;
+    @Column(name="application_port")
+    private String applicationPort;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="group_id")
     @JsonBackReference
@@ -39,6 +41,10 @@ public class Application {
             fetch = FetchType.EAGER,
             cascade = CascadeType.REMOVE)
     private Set<Endpoint> endpoints;
+    @OneToMany(mappedBy = "application",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.REMOVE)
+    private Set<ApplicationEnvironment> applicationEnvironments;
 
     // Not part of the database.
     @Transient
@@ -47,9 +53,10 @@ public class Application {
     public Application() {
     }
 
-    public Application(String applicationName, String applicationDescription, Integer groupId) {
+    public Application(String applicationName, String applicationDescription, String applicationPort, Integer groupId) {
         this.applicationName = applicationName;
         this.applicationDescription = applicationDescription;
+        this.applicationPort = applicationPort;
         this.groupId = groupId;
     }
 
@@ -93,6 +100,22 @@ public class Application {
         this.endpoints = endpoints;
     }
 
+    public Set<ApplicationEnvironment> getApplicationEnvironments() {
+        return applicationEnvironments;
+    }
+
+    public void setApplicationEnvironments(Set<ApplicationEnvironment> applicationEnvironments) {
+        this.applicationEnvironments = applicationEnvironments;
+    }
+
+    public String getApplicationPort() {
+        return applicationPort;
+    }
+
+    public void setApplicationPort(String applicationPort) {
+        this.applicationPort = applicationPort;
+    }
+
     public Integer getGroupId() {
         return groupId;
     }
@@ -107,6 +130,7 @@ public class Application {
                 "id=" + id +
                 ", applicationName='" + applicationName + '\'' +
                 ", applicationDescription='" + applicationDescription + '\'' +
+                ", applicationPort='" + applicationPort + '\'' +
                 ", group=" + group +
                 ", endpoints=" + endpoints +
                 ", groupId=" + groupId +

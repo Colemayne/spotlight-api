@@ -10,5 +10,6 @@ public interface ApplicationRepository extends CrudRepository<Application, Integ
   List<Application> findApplicationById(int id);
   List<Application> findAll();
   List<Application> findApplicationByGroup(Group group);
+  Application findById(int id);
 }
 

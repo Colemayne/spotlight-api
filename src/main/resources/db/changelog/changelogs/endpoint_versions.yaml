@@ -29,7 +29,7 @@ databaseChangeLog:
                   type: int
               - column:
                   name: endpoint_description
-                  type: varchar(512)
+                  type: mediumtext
               - column:
                   name: endpoint_version
                   type: varchar(32)
@@ -38,13 +38,13 @@ databaseChangeLog:
                   type: varchar(512)
               - column:
                   name: endpoint_expectation
-                  type: varchar(2028)
+                  type: mediumtext
               - column:
                   name: endpoint_example_body
-                  type: varchar(2028)
+                  type: mediumtext
               - column:
                   name: endpoint_notes
-                  type: varchar(2028)
+                  type: mediumtext
               - column:
                   name: endpoint_method
                   type: varchar(32)

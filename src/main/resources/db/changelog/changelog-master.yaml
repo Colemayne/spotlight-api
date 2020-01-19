@@ -7,6 +7,8 @@ databaseChangeLog:
   - include:
       file: classpath*:db/changelog/changelogs/applications.yaml
   - include:
+      file: classpath*:db/changelog/changelogs/application_environments.yaml
+  - include:
       file: classpath*:db/changelog/changelogs/endpoint_versions.yaml
   - include:
       file: classpath*:db/changelog/changelogs/endpoint_parameters.yaml

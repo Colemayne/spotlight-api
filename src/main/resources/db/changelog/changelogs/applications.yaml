@@ -25,5 +25,8 @@ databaseChangeLog:
                   name: application_name
                   type: varchar(32)
               - column:
+                  name: application_port
+                  type: varchar(32)
+              - column:
                   name: application_description
-                  type: varchar(512)
+                  type: mediumtext

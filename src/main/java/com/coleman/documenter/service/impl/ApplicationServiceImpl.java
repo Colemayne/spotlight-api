@@ -1,10 +1,12 @@
 package com.coleman.documenter.service.impl;
 
 import com.coleman.documenter.domain.application.Application;
+import com.coleman.documenter.domain.application.ApplicationEnvironment;
 import com.coleman.documenter.domain.application.endpoint.Endpoint;
 import com.coleman.documenter.domain.application.endpoint.EndpointHeaders;
 import com.coleman.documenter.domain.application.endpoint.EndpointParameters;
 import com.coleman.documenter.domain.group.Group;
+import com.coleman.documenter.repository.application.ApplicationEnvironmentRepository;
 import com.coleman.documenter.repository.application.ApplicationRepository;
 import com.coleman.documenter.repository.application.endpoint.EndpointHeadersRepository;
 import com.coleman.documenter.repository.application.endpoint.EndpointParametersRepository;
@@ -24,6 +26,8 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Autowired
     private ApplicationRepository applicationRepository;
     @Autowired
+    private ApplicationEnvironmentRepository applicationEnvironmentRepository;
+    @Autowired
     private EndpointRepository endpointRepository;
     @Autowired
     private EndpointParametersRepository endpointParametersRepository;
@@ -36,6 +40,20 @@ public class ApplicationServiceImpl implements ApplicationService {
     public Application addApplication(Application application) {
         Group group = groupService.findGroupById(application.getGroupId()).get(0);
         application.setGroup(group);
+        return applicationRepository.save(application);
+    }
+
+    @Override
+    public Application saveApplication(Application application) {
+        int id = application.getId();
+        Application application1 = applicationRepository.findById(id);
+        application.setGroup(application1.getGroup());
+        for(ApplicationEnvironment applicationEnvironment: application.getApplicationEnvironments()){
+            if(applicationEnvironment.getEnvironmentName() != null && applicationEnvironment.getEnvironmentAddress() != null) {
+                applicationEnvironment.setApplication(application);
+                applicationEnvironmentRepository.save(applicationEnvironment);
+            }
+        }
         return applicationRepository.save(application);
     }
 
@@ -106,6 +124,12 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public void deleteHeader(Integer id) {
         endpointHeadersRepository.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public void deleteEnvironment(Integer id) {
+        applicationEnvironmentRepository.deleteById(id);
     }
 
 

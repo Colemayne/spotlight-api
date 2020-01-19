@@ -4,6 +4,7 @@ DROP TABLE endpoint_headers;
 DROP TABLE endpoint_parameters;
 DROP TABLE endpoint_versions;
 DROP TABLE endpoints;
+DROP TABLE application_environments;
 DROP TABLE applications;
 DROP TABLE documenter_groups_membership;
 DROP TABLE documenter_groups;

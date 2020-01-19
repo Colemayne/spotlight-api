@@ -1,6 +1,7 @@
 package com.coleman.documenter.controller;
 
 import com.coleman.documenter.domain.application.Application;
+import com.coleman.documenter.domain.application.ApplicationEnvironment;
 import com.coleman.documenter.domain.group.Group;
 import com.coleman.documenter.service.ApplicationService;
 import com.coleman.documenter.service.GroupService;
@@ -38,6 +39,12 @@ public class ApplicationController {
         return ResponseEntity.ok().body(application);
     }
 
+    @RequestMapping(path = "/save", method = RequestMethod.POST)
+    public ResponseEntity<Application> saveApplication(@RequestBody Application sentApplication) {
+        Application application = applicationService.saveApplication(sentApplication);
+        return ResponseEntity.ok().body(application);
+    }
+
     @RequestMapping(path = {"/select","/select/{id}"}, method = RequestMethod.GET)
     public ResponseEntity<List<Application>> selectApplication(@PathVariable Optional<Integer> id){
         if (id.isPresent()) {
@@ -51,6 +58,12 @@ public class ApplicationController {
     public ResponseEntity<List<Application>> selectApplicationByGroupId(@PathVariable Integer id){
         Group group = groupService.findGroupById(id).get(0);
         return ResponseEntity.ok().body(applicationService.findApplicationByGroup(group));
+    }
+
+    @RequestMapping(path = "/delete/environment", method = RequestMethod.POST)
+    public ResponseEntity deleteEnvironment(@RequestBody ApplicationEnvironment applicationEnvironment) {
+        applicationService.deleteEnvironment(applicationEnvironment.getId());
+        return ResponseEntity.ok().build();
     }
 
 

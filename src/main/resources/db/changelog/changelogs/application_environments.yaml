@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create_endpoint_parameters_table
+      id: create_application_environments_table
       author: Coleman
       changes:
         - createTable:
-            tableName: endpoint_parameters
+            tableName: application_environments
             columns:
               - column:
                   name: id
@@ -14,22 +14,22 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: endpoint_id
+                  name: application_id
                   type: int
                   constraints:
                     onDelete: CASCADE
-                    foreignKeyName: fk_parameters_id_endpoint_version_id
+                    foreignKeyName: fk_environment_id_application_id
                     referencedColumnNames: id
-                    referencedTableName: endpoints
+                    referencedTableName: applications
               - column:
-                  name: parameter_key
-                  type: varchar(64)
+                  name: environment_name
+                  type: varchar(128)
               - column:
-                  name: parameter_type
-                  type: varchar(64)
-              - column:
-                  name: parameter_required
+                  name: environment_proxy
                   type: int
               - column:
-                  name: parameter_description
+                  name: environment_description
                   type: mediumtext
+              - column:
+                  name: environment_address
+                  type: varchar(1024)

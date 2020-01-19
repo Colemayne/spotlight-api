@@ -11,6 +11,7 @@ import java.util.List;
 public interface ApplicationService {
 
     Application addApplication(Application application);
+    Application saveApplication(Application application);
     List<Application> findApplicationById(int id);
     List<Application> findApplicationByGroup(Group group);
     List<Application> findAllApplications();
@@ -20,4 +21,5 @@ public interface ApplicationService {
     Endpoint saveEndpoint(Endpoint endpoint);
     void deleteParameter(Integer id);
     void deleteHeader(Integer id);
+    void deleteEnvironment(Integer id);
 }
