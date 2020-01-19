@@ -4,7 +4,10 @@ import Home from '@/views/Home'
 import Create from '@/views/create/Create'
 import Application from '@/views/create/Application'
 import Endpoints from '@/views/create/Endpoints'
-import Documentation from '@/views/Documentation'
+import EndpointVersion from '@/views/create/EndpointVersion'
+import Documentation from '@/views/document/Documentation'
+import DocumentationApps from '@/views/document/DocumentationApps'
+import DocumentationView from '@/views/document/DocumentationView'
 Vue.use(Router)
 
 export default new Router({
@@ -16,7 +19,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/teams',
+      path: '/edit',
       name: 'Create',
       component: Create
     },
@@ -26,14 +29,29 @@ export default new Router({
       component: Application,
     },
     {
-      path: '/endpoints/:app',
+      path: '/edit/:team/:app',
       name: 'chooseEndpoint',
       component: Endpoints,
+    },
+    {
+      path: '/versions/:endpoint',
+      name: 'chooseVersion',
+      component: EndpointVersion,
     },
     {
       path: '/documentation',
       name: 'Documentation',
       component: Documentation
+    },
+    {
+      path: '/documentation/:team',
+      name: 'DocumentationApps',
+      component: DocumentationApps
+    },
+    {
+      path: '/documentation/:team/:app',
+      name: 'DocumentationView',
+      component: DocumentationView
     }
   ]
 })

@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-content>
+      <div class="ad-background" />
       <NavBar/>
       <router-view/>
     </v-content>

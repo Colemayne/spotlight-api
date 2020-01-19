@@ -69,7 +69,8 @@ export default {
       this.closePopover();
     },
     chooseApplication: function(id) {
-      this.$router.push('/endpoints/'+id);
+      let gid = this.$route.params.team
+      this.$router.push('/edit/'+gid+'/'+id);
     }
   },
 

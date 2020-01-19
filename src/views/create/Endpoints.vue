@@ -8,6 +8,9 @@
       </div>
       <div style="height:30px"></div>
       <div class="app-grid">
+        <button class="ad-button" style="height:100px;" v-for="endpoint in endpoints" @click="chooseEndpoint(endpoint.id)">
+          <p>{{ endpoint.endpointName }}</p>
+        </button>
       </div>
     </div>
     <!-- Popovers -->
@@ -38,6 +41,7 @@ export default {
       }).then(res => res.json())
       .then(data => {
         this.application = data[0];
+        this.endpoints = data[0].endpoints;
       });
     },
     closePopover: function() {
@@ -57,8 +61,8 @@ export default {
       });
       this.closePopover();
     },
-    chooseApplication: function() {
-
+    chooseEndpoint: function(id) {
+      this.$router.push('/versions/'+id);
     }
   },
 

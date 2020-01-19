@@ -1,6 +1,6 @@
 <template>
   <div class="nav-container">
-    <div></div>
+    <div class="spotlight-logo"></div>
     <router-link v-for="button in buttons" class="ad-menu-button" :to="button.to" tag="button" :key="button.name">
       {{ button.name }}
     </router-link>
@@ -16,8 +16,8 @@ export default {
         to: "/"
       },
       {
-        name: "Teams",
-        to: "/teams"
+        name: "Edit",
+        to: "/edit"
       },
       {
         name: "Documentation",
@@ -45,11 +45,17 @@ export default {
   color: black;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 300px 200px 200px 200px auto;
+  grid-template-columns: 75px 200px 200px 200px auto;
   grid-template-rows: 100%;
 }
 .th-icon {
   height: 100%;
   width: 100%;
+}
+.spotlight-logo {
+  height: 100%;
+  background: url('../../assets/spotlightLogo2.svg');
+  background-repeat: no-repeat;
+
 }
 </style>
