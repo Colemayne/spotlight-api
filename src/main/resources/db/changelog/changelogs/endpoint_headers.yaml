@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_endpoint_headers_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: endpoint_headers
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: endpoint_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_headers_id_endpoint_version_id
+                    referencedColumnNames: id
+                    referencedTableName: endpoints
+              - column:
+                  name: header_key
+                  type: varchar(32)
+              - column:
+                  name: header_type
+                  type: varchar(32)

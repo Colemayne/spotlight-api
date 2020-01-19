@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_endpoint_parameters_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: endpoint_parameters
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: endpoint_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_parameters_id_endpoint_version_id
+                    referencedColumnNames: id
+                    referencedTableName: endpoints
+              - column:
+                  name: parameter_key
+                  type: varchar(64)
+              - column:
+                  name: parameter_type
+                  type: varchar(64)
+              - column:
+                  name: parameter_required
+                  type: int
+              - column:
+                  name: parameter_description
+                  type: varchar(2048)

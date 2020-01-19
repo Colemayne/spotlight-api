@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_endpoint_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: endpoints
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: application_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_endpoint_id_application_id
+                    referencedColumnNames: id
+                    referencedTableName: applications
+              - column:
+                  name: endpoint_name
+                  type: varchar(128)
+              - column:
+                  name: endpoint_auth_required
+                  type: int
+              - column:
+                  name: endpoint_description
+                  type: varchar(512)
+              - column:
+                  name: endpoint_version
+                  type: varchar(32)
+              - column:
+                  name: endpoint_location
+                  type: varchar(512)
+              - column:
+                  name: endpoint_expectation
+                  type: varchar(2028)
+              - column:
+                  name: endpoint_example_body
+                  type: varchar(2028)
+              - column:
+                  name: endpoint_notes
+                  type: varchar(2028)
+              - column:
+                  name: endpoint_method
+                  type: varchar(32)
+              - column:
+                  name: endpoint_port
+                  type: varchar(32)

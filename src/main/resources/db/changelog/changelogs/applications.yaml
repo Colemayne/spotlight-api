@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_applications_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: applications
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: group_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_application_id_group_id
+                    referencedColumnNames: id
+                    referencedTableName: documenter_groups
+              - column:
+                  name: application_name
+                  type: varchar(32)
+              - column:
+                  name: application_description
+                  type: varchar(512)

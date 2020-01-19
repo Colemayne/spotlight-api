@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_groups_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: documenter_groups
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: group_name
+                  type: varchar(32)
+  - changeSet:
+      id: create_groups_membership_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: documenter_groups_membership
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: group_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_membership_id_group_id
+                    referencedColumnNames: id
+                    referencedTableName: documenter_groups
+              - column:
+                  name: username
+                  type: varchar(64)
+              - column:
+                  name: role
+                  type: varchar(32)

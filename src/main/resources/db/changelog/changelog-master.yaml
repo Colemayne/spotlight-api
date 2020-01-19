@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: root
+  - include:
+      file: classpath*:db/changelog/changelogs/groups.yaml
+  - include:
+      file: classpath*:db/changelog/changelogs/applications.yaml
+  - include:
+      file: classpath*:db/changelog/changelogs/endpoint_versions.yaml
+  - include:
+      file: classpath*:db/changelog/changelogs/endpoint_parameters.yaml
+  - include:
+      file: classpath*:db/changelog/changelogs/endpoint_headers.yaml
