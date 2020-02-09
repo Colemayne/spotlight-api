@@ -7,5 +7,6 @@ DROP TABLE endpoints;
 DROP TABLE application_environments;
 DROP TABLE applications;
 DROP TABLE documenter_groups_membership;
+DROP TABLE documenter_groups_requests;
 DROP TABLE documenter_groups;
 SHOW TABLES;

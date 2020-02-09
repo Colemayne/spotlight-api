@@ -44,3 +44,26 @@ databaseChangeLog:
               - column:
                   name: role
                   type: varchar(32)
+  - changeSet:
+      id: create_groups_requests_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: documenter_groups_requests
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: group_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+              - column:
+                  name: username
+                  type: varchar(64)
+                  

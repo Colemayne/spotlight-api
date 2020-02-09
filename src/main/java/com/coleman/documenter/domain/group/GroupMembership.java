@@ -73,4 +73,13 @@ public class GroupMembership {
         this.group = group;
     }
 
+    @Override
+    public String toString() {
+        return "GroupMembership{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", role='" + role + '\'' +
+                ", group=" + group +
+                '}';
+    }
 }

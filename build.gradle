@@ -21,6 +21,10 @@ allprojects {
     }
 }
 
+ext {
+    set('keycloakVersion', '8.0.1')
+}
+
 bootJar {
     baseName = 'API-Documenter'
     version = '0.0.1'
@@ -31,6 +35,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework:spring-web")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-devtools")
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile("org.liquibase:liquibase-core:3.8.0")
@@ -39,7 +44,14 @@ dependencies {
     compile group: 'commons-codec', name: 'commons-codec', version: '1.13'
     compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.4.0'
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.2.RELEASE'
+    compile group: 'org.keycloak', name: 'keycloak-spring-boot-starter', version: '8.0.1'
+    compile group: 'org.keycloak', name: 'keycloak-spring-boot-2-adapter', version: '8.0.1'
+    compile group: 'org.keycloak', name: 'keycloak-core', version: '8.0.1'
+    compile group: 'org.keycloak', name: 'keycloak-adapter-core', version: '8.0.1'
+    compile group: 'org.keycloak', name: 'keycloak-adapter-spi', version: '8.0.1'
+    implementation 'org.keycloak:keycloak-spring-boot-starter'
 }
+
 
 test {
     useJUnitPlatform()

@@ -76,9 +76,6 @@ public class ApplicationServiceImpl implements ApplicationService {
     public Endpoint addEndpoint(Endpoint endpoint) {
         Application application = findApplicationById(endpoint.getApplicationId()).get(0);
         endpoint.setApplication(application);
-
-        System.out.println(endpoint.getApplication().toString());
-        System.out.println(endpoint.toString());
         return endpointRepository.save(endpoint);
     }
 
