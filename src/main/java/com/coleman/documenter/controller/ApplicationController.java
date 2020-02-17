@@ -30,6 +30,7 @@ public class ApplicationController {
 
     @RequestMapping(path = "/alive", method = RequestMethod.GET)
     public ResponseEntity<String> alive() {
+        applicationService.getPDF();
         return ResponseEntity.ok().body("Alive");
     }
 

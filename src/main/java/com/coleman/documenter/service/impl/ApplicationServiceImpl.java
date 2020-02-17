@@ -13,10 +13,20 @@ import com.coleman.documenter.repository.application.endpoint.EndpointParameters
 import com.coleman.documenter.repository.application.endpoint.EndpointRepository;
 import com.coleman.documenter.service.ApplicationService;
 import com.coleman.documenter.service.GroupService;
+import com.itextpdf.html2pdf.HtmlConverter;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.lang.reflect.Parameter;
 import java.util.List;
 
@@ -109,6 +119,32 @@ public class ApplicationServiceImpl implements ApplicationService {
             }
         }
         return  endpointRepository.save(endpoint);
+    }
+
+    @Override
+    public void getPDF() {
+
+        String HTML = "<html><div style=\"position:relative;height:1000px;width:100%;background:rgba(0,0,0,0.3);\"><p>Hello</p></div>";
+
+        StringBuilder sb = new StringBuilder(HTML);
+        for(int i = 0; i < 5; i++) {
+            sb.append("<div style=\"position:relative;height:700px;width:100%;background:rgba(0,0,0,0.3);\"><p>" + i + "</p></div>");
+        }
+        sb.append("</html>");
+       // Document document = new Document();
+        try {
+            HtmlConverter.convertToPdf(sb.toString(), new FileOutputStream("/opt/testData/sampleHello.pdf"));
+            System.out.println("did it!");
+            /*PdfWriter.getInstance(document, new FileOutputStream("/opt/testData/sampleHello.pdf"));
+            System.out.println("helllooo");
+            document.open();
+            Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+            Chunk chunk = new Chunk("First PDF", font);
+            document.add(chunk);
+            document.close();*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Transactional

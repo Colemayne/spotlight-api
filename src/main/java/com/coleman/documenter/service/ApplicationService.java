@@ -22,4 +22,5 @@ public interface ApplicationService {
     void deleteParameter(Integer id);
     void deleteHeader(Integer id);
     void deleteEnvironment(Integer id);
+    void getPDF();
 }

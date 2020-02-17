@@ -1,0 +1,96 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_reports_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: reports
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: group_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_report_id_group_id
+                    referencedColumnNames: id
+                    referencedTableName: documenter_groups
+              - column:
+                  name: report_name
+                  type: varchar(32)
+              - column:
+                  name: report_description
+                  type: mediumtext
+              - column:
+                  name: report_date
+                  type: datetime
+              - column:
+                  name: report_last_updated
+                  type: datetime
+  - changeSet:
+      id: create_report_items_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: report_items
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: report_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_report_item_id_report_id
+                    referencedColumnNames: id
+                    referencedTableName: reports
+              - column:
+                  name: application_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_report_item_id_application_id
+                    referencedColumnNames: id
+                    referencedTableName: applications
+              - column:
+                  name: endpoint_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_report_item_id_endpoint_id
+                    referencedColumnNames: id
+                    referencedTableName: endpoints
+  - changeSet:
+      id: create_report_test_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: report_test
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: rid
+                  type: int
+              - column:
+                  name: aid
+                  type: int
+              - column:
+                  name: eid
+                  type: int

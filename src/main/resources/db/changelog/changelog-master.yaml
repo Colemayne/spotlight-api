@@ -14,3 +14,5 @@ databaseChangeLog:
       file: classpath*:db/changelog/changelogs/endpoint_parameters.yaml
   - include:
       file: classpath*:db/changelog/changelogs/endpoint_headers.yaml
+  - include:
+      file: classpath*:db/changelog/changelogs/reports.yaml

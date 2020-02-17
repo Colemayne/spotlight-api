@@ -1,5 +1,7 @@
 DROP TABLE DATABASECHANGELOG;
 DROP TABLE DATABASECHANGELOGLOCK;
+DROP TABLE report_items;
+DROP TABLE reports;
 DROP TABLE endpoint_headers;
 DROP TABLE endpoint_parameters;
 DROP TABLE endpoint_versions;
