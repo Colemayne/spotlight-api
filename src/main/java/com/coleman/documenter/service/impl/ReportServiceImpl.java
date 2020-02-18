@@ -2,13 +2,16 @@ package com.coleman.documenter.service.impl;
 
 import com.coleman.documenter.domain.group.Group;
 import com.coleman.documenter.domain.reports.ReportItem;
+import com.coleman.documenter.domain.reports.ReportTest;
 import com.coleman.documenter.domain.reports.Reports;
 import com.coleman.documenter.repository.group.GroupRepository;
 import com.coleman.documenter.repository.reports.ReportItemRepository;
 import com.coleman.documenter.repository.reports.ReportRepository;
+import com.coleman.documenter.repository.reports.ReportTestRepository;
 import com.coleman.documenter.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +23,8 @@ public class ReportServiceImpl implements ReportService {
     ReportRepository reportRepository;
     @Autowired
     ReportItemRepository reportItemRepository;
+    @Autowired
+    ReportTestRepository reportTestRepository;
     @Autowired
     GroupRepository groupRepository;
 
@@ -34,10 +39,10 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public ReportItem addItem(ReportItem reportItem){
-        Reports report = reportRepository.findById(reportItem.getReportId()).get();
-        reportItem.setReport(report);
-        return reportItemRepository.save(reportItem);
+    public ReportTest addItem(ReportTest reportTest){
+        Reports report = reportRepository.findById(reportTest.getRid()).get();
+        reportTest.setReport(report);
+        return reportTestRepository.save(reportTest);
     }
 
     @Override
@@ -59,11 +64,17 @@ public class ReportServiceImpl implements ReportService {
     public Reports saveReport(Reports report) {
         Group group = groupRepository.findGroupById(report.getGroupId()).get(0);
         report.setGroup(group);
-        for(ReportItem item: report.getReportItems()){
-
-            reportItemRepository.save(item);
+        for(ReportTest item: report.getReportTests()){
+            item.setReport(report);
+            reportTestRepository.save(item);
         }
         return reportRepository.save(report);
+    }
+
+    @Override
+    @Transactional
+    public void deleteItemById(Integer id) {
+        reportTestRepository.deleteById(id);
     }
 
 }

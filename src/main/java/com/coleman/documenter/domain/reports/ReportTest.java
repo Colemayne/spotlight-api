@@ -1,12 +1,16 @@
 package com.coleman.documenter.domain.reports;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,14 +21,24 @@ public class ReportTest {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="report_id")
+    @JsonBackReference(value="report")
+    private Reports report;
     @Column(name="rid")
     private Integer rid;
     @Column(name="aid")
     private Integer aid;
     @Column(name="eid")
     private Integer eid;
+    @Column(name="priority")
+    private Integer priority;
 
     public ReportTest() {
+    }
+
+    public ReportTest(Reports report) {
+        this.report = report;
     }
 
     public ReportTest(Integer rid, Integer aid, Integer eid) {
@@ -39,6 +53,14 @@ public class ReportTest {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Reports getReport() {
+        return report;
+    }
+
+    public void setReport(Reports report) {
+        this.report = report;
     }
 
     public Integer getRid() {
@@ -63,5 +85,13 @@ public class ReportTest {
 
     public void setEid(Integer eid) {
         this.eid = eid;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 }

@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_test_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: test
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: test_name
+                  type: varchar(32)
+              - column:
+                  name: test_description
+                  type: mediumtext
+  - changeSet:
+      id: create_test_items_table
+      author: Coleman
+      changes:
+        - createTable:
+            tableName: test_items
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: test_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_test_item_id_test_id
+                    referencedColumnNames: id
+                    referencedTableName: test
+              - column:
+                  name: tag_name
+                  type: varchar(32)
+              - column:
+                  name: tag_reason
+                  type: mediumtext

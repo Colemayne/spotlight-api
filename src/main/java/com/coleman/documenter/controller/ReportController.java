@@ -2,6 +2,7 @@ package com.coleman.documenter.controller;
 
 import com.coleman.documenter.domain.group.Group;
 import com.coleman.documenter.domain.reports.ReportItem;
+import com.coleman.documenter.domain.reports.ReportTest;
 import com.coleman.documenter.domain.reports.Reports;
 import com.coleman.documenter.service.GroupService;
 import com.coleman.documenter.service.ReportService;
@@ -40,8 +41,8 @@ public class ReportController {
     }
 
     @RequestMapping(path = "/addItem", method = RequestMethod.POST)
-    public ResponseEntity<ReportItem> addItem(@RequestBody ReportItem reportItem) {
-        return ResponseEntity.ok().body(reportService.addItem(reportItem));
+    public ResponseEntity<ReportTest> addItem(@RequestBody ReportTest reportTest) {
+        return ResponseEntity.ok().body(reportService.addItem(reportTest));
     }
 
     @RequestMapping(path = {"/select","/select/{id}"}, method = RequestMethod.GET)
@@ -63,6 +64,12 @@ public class ReportController {
     public ResponseEntity<Reports> saveApplication(@RequestBody Reports sentReport) {
         Reports report = reportService.saveReport(sentReport);
         return ResponseEntity.ok().body(report);
+    }
+
+    @RequestMapping(path = "/deleteItem/{id}", method = RequestMethod.POST)
+    public ResponseEntity deleteItem(@PathVariable Integer id) {
+        reportService.deleteItemById(id);
+        return ResponseEntity.ok().build();
     }
 
 }

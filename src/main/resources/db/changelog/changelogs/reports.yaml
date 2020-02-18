@@ -86,6 +86,17 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
+                  name: report_id
+                  type: int
+                  constraints:
+                    onDelete: CASCADE
+                    foreignKeyName: fk_report_test_id_report_id
+                    referencedColumnNames: id
+                    referencedTableName: reports
+              - column:
+                  name: priority
+                  type: int
+              - column:
                   name: rid
                   type: int
               - column:

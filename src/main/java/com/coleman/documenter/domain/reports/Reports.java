@@ -44,6 +44,10 @@ public class Reports {
             fetch = FetchType.EAGER,
             cascade = CascadeType.REMOVE)
     private Set<ReportItem> reportItems;
+    @OneToMany(mappedBy = "report",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.REMOVE)
+    private Set<ReportTest> reportTests;
 
     // Not part of the database.
     @Transient
@@ -122,16 +126,25 @@ public class Reports {
         this.groupId = groupId;
     }
 
+    public Set<ReportTest> getReportTests() {
+        return reportTests;
+    }
+
+    public void setReportTests(Set<ReportTest> reportTests) {
+        this.reportTests = reportTests;
+    }
+
     @Override
     public String toString() {
         return "Reports{" +
                 "id=" + id +
                 ", reportName='" + reportName + '\'' +
                 ", reportDescription='" + reportDescription + '\'' +
-                ", reportDate='" + reportDate + '\'' +
-                ", reportLastUpdated='" + reportLastUpdated + '\'' +
+                ", reportDate=" + reportDate +
+                ", reportLastUpdated=" + reportLastUpdated +
                 ", group=" + group +
                 ", reportItems=" + reportItems +
+                ", reportTests=" + reportTests +
                 ", groupId=" + groupId +
                 '}';
     }
